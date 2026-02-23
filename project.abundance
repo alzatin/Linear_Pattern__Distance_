@@ -30,17 +30,17 @@
         },
         {
           "name": "distance",
-          "ioValue": 7,
-          "currentEquation": "7"
+          "ioValue": 70,
+          "currentEquation": "70"
         },
         {
           "name": "spacing",
-          "ioValue": 15,
-          "currentEquation": "15"
+          "ioValue": 1,
+          "currentEquation": "1"
         }
       ],
       "codeVersion": 1,
-      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet importedShape = library[shape].geometry[0].boundingBox.bounds[1][1]\nconsole.log(importedShape)\nlet shapesArray = [];\nlet number = 3\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, spacing * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
+      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet boundsX = library[shape].geometry[0].boundingBox.bounds[1][1]\n\nlet shapesArray = [];\nlet number = Math.floor(distance/ (boundsX + spacing + boundsX))\nconsole.log(Math.floor(number))\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, (boundsX + spacing) * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
     },
     {
       "atomType": "Circle",
