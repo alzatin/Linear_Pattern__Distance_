@@ -20,7 +20,7 @@
     },
     {
       "atomType": "Code",
-      "x": 0.4621621621621621,
+      "x": 0.45855855855855854,
       "y": 0.46987951807228917,
       "uniqueID": "id-37",
       "ioValues": [
@@ -30,19 +30,78 @@
         },
         {
           "name": "distance",
-          "ioValue": 5,
-          "currentEquation": "5"
+          "ioValue": 6,
+          "currentEquation": "6"
         },
         {
           "name": "spacing",
-          "ioValue": 2
+          "ioValue": 15,
+          "currentEquation": "15"
         }
       ],
       "codeVersion": 1,
-      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 2 }\n];\n\nlet importedShape = library[shape]\nconsole.log(importedShape)\nlet shapesArray = [];\n\nfor (let i = 0; i < Number; i++) {\n    let rotatedShape = await Move(shape, spacing * i, spacing * i,spacing * i);\n    shapesArray.push(importedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
+      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet importedShape = library[shape].geometry[0].boudingBox\nconsole.log(importedShape)\nlet shapesArray = [];\nlet number = 3\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, spacing * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
+    },
+    {
+      "atomType": "Circle",
+      "x": 0.2009009009009009,
+      "y": 0.41566265060240964,
+      "uniqueID": "id-44",
+      "ioValues": [
+        {
+          "name": "diameter",
+          "ioValue": 10,
+          "currentEquation": "10"
+        }
+      ]
+    },
+    {
+      "atomType": "Extrude",
+      "x": 0.3333333333333333,
+      "y": 0.3463855421686747,
+      "uniqueID": "id-47",
+      "ioValues": [
+        {
+          "name": "geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "height",
+          "ioValue": 10,
+          "currentEquation": "10"
+        }
+      ]
+    },
+    {
+      "atomType": "Rectangle",
+      "x": 0.2027027027027027,
+      "y": 0.7319277108433735,
+      "uniqueID": "id-51",
+      "ioValues": [
+        {
+          "name": "x length",
+          "ioValue": 10,
+          "currentEquation": "10"
+        },
+        {
+          "name": "y length",
+          "ioValue": 10
+        }
+      ]
     }
   ],
-  "allConnectors": [],
+  "allConnectors": [
+    {
+      "ap2Name": "shape",
+      "ap1ID": "id-47",
+      "ap2ID": "id-37"
+    },
+    {
+      "ap2Name": "geometry",
+      "ap1ID": "id-51",
+      "ap2ID": "id-47"
+    }
+  ],
   "unitsKey": "Unitless",
   "fileTypeVersion": 1,
   "filetypeVersion": 1
