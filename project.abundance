@@ -4,6 +4,23 @@
   "y": 0,
   "uniqueID": "id-34",
   "name": "Linear_Pattern__Distance_",
+  "ioValues": [
+    {
+      "name": "Shape",
+      "ioValue": 10,
+      "currentEquation": "10"
+    },
+    {
+      "name": "Distance",
+      "ioValue": 70,
+      "currentEquation": "70"
+    },
+    {
+      "name": "Spacing",
+      "ioValue": 5,
+      "currentEquation": "5"
+    }
+  ],
   "topLevel": true,
   "allAtoms": [
     {
@@ -20,8 +37,8 @@
     },
     {
       "atomType": "Code",
-      "x": 0.4549019607843138,
-      "y": 0.46987951807228917,
+      "x": 0.4535752401280683,
+      "y": 0.45481927710843373,
       "uniqueID": "id-37",
       "ioValues": [
         {
@@ -31,16 +48,16 @@
         {
           "name": "distance",
           "ioValue": 70,
-          "currentEquation": "70"
+          "currentEquation": "12"
         },
         {
           "name": "spacing",
-          "ioValue": 1,
-          "currentEquation": "1"
+          "ioValue": 5,
+          "currentEquation": ".5"
         }
       ],
       "codeVersion": 1,
-      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet boundsX = library[shape].geometry[0].boundingBox.bounds[1][1]\n\nlet shapesArray = [];\nlet number = Math.floor(distance/ (boundsX + spacing + boundsX))\nconsole.log(Math.floor(number))\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, (boundsX + spacing) * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
+      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet boundsX = library[shape].geometry[0].boundingBox.width\nconsole.log(library[shape].geometry[0].boundingBox)\nconsole.log(boundsX)\n\nlet shapesArray = [];\nlet number = Math.floor(distance/ (boundsX+ spacing ))\nconsole.log(Math.floor(number))\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, (boundsX + spacing) * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
     },
     {
       "atomType": "Circle",
@@ -57,8 +74,8 @@
     },
     {
       "atomType": "Extrude",
-      "x": 0.3333333333333333,
-      "y": 0.3463855421686747,
+      "x": 0.33617929562433296,
+      "y": 0.3253012048192771,
       "uniqueID": "id-47",
       "ioValues": [
         {
@@ -74,32 +91,68 @@
     },
     {
       "atomType": "Rectangle",
-      "x": 0.19901960784313727,
+      "x": 0.2006403415154749,
       "y": 0.7560240963855422,
       "uniqueID": "id-51",
       "ioValues": [
         {
           "name": "x length",
-          "ioValue": 5,
-          "currentEquation": "5"
+          "ioValue": 1,
+          "currentEquation": "1"
         },
         {
           "name": "y length",
           "ioValue": 10
         }
       ]
+    },
+    {
+      "atomType": "Input",
+      "x": 0.021449999999999997,
+      "y": 0.3614457831325301,
+      "uniqueID": "id-55",
+      "name": "Shape"
+    },
+    {
+      "atomType": "Input",
+      "x": 0.021449999999999997,
+      "y": 0.43944578313253013,
+      "uniqueID": "id-58",
+      "name": "Distance"
+    },
+    {
+      "atomType": "Input",
+      "x": 0.021449999999999997,
+      "y": 0.5174457831325301,
+      "uniqueID": "id-61",
+      "name": "Spacing"
     }
   ],
   "allConnectors": [
     {
-      "ap2Name": "shape",
-      "ap1ID": "id-47",
-      "ap2ID": "id-37"
+      "ap2Name": "number or geometry",
+      "ap1ID": "id-37",
+      "ap2ID": "id-35"
     },
     {
       "ap2Name": "geometry",
       "ap1ID": "id-51",
       "ap2ID": "id-47"
+    },
+    {
+      "ap2Name": "shape",
+      "ap1ID": "id-55",
+      "ap2ID": "id-37"
+    },
+    {
+      "ap2Name": "distance",
+      "ap1ID": "id-58",
+      "ap2ID": "id-37"
+    },
+    {
+      "ap2Name": "spacing",
+      "ap1ID": "id-61",
+      "ap2ID": "id-37"
     }
   ],
   "unitsKey": "Unitless",
