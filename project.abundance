@@ -1,13 +1,49 @@
 {
-    "atomType": "Molecule",
-    "x": 0,
-    "y": 0,
-    "uniqueID": "id-34",
-    "name": "Linear_Pattern__Distance_",
-    "topLevel": true,
-    "allAtoms": [],
-    "allConnectors": [],
-    "unitsKey": "Unitless",
-    "fileTypeVersion": 1,
-    "filetypeVersion": 1
+  "atomType": "Molecule",
+  "x": 0,
+  "y": 0,
+  "uniqueID": "id-34",
+  "name": "Linear_Pattern__Distance_",
+  "topLevel": true,
+  "allAtoms": [
+    {
+      "atomType": "Output",
+      "x": 0.98,
+      "y": 0.5,
+      "uniqueID": "id-35",
+      "ioValues": [
+        {
+          "name": "number or geometry",
+          "ioValue": "__GEOMETRY_INPUT__"
+        }
+      ]
+    },
+    {
+      "atomType": "Code",
+      "x": 0.4621621621621621,
+      "y": 0.46987951807228917,
+      "uniqueID": "id-37",
+      "ioValues": [
+        {
+          "name": "shape",
+          "ioValue": "__GEOMETRY_INPUT__"
+        },
+        {
+          "name": "distance",
+          "ioValue": 5,
+          "currentEquation": "5"
+        },
+        {
+          "name": "spacing",
+          "ioValue": 2
+        }
+      ],
+      "codeVersion": 1,
+      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 2 }\n];\n\nlet importedShape = library[shape]\nconsole.log(importedShape)\nlet shapesArray = [];\n\nfor (let i = 0; i < Number; i++) {\n    let rotatedShape = await Move(shape, spacing * i, spacing * i,spacing * i);\n    shapesArray.push(importedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
+    }
+  ],
+  "allConnectors": [],
+  "unitsKey": "Unitless",
+  "fileTypeVersion": 1,
+  "filetypeVersion": 1
 }
