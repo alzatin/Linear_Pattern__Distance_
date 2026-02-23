@@ -20,7 +20,7 @@
     },
     {
       "atomType": "Code",
-      "x": 0.45855855855855854,
+      "x": 0.4549019607843138,
       "y": 0.46987951807228917,
       "uniqueID": "id-37",
       "ioValues": [
@@ -30,8 +30,8 @@
         },
         {
           "name": "distance",
-          "ioValue": 6,
-          "currentEquation": "6"
+          "ioValue": 7,
+          "currentEquation": "7"
         },
         {
           "name": "spacing",
@@ -40,7 +40,7 @@
         }
       ],
       "codeVersion": 1,
-      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet importedShape = library[shape].geometry[0].boudingBox\nconsole.log(importedShape)\nlet shapesArray = [];\nlet number = 3\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, spacing * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
+      "code": "\n// Example Code\nconst Inputs = [\n  { inputName: \"shape\", type: \"geometry\", defaultValue: null },\n  { inputName: \"distance\", type: \"number\", defaultValue: 5 },\n  { inputName: \"spacing\", type: \"number\", defaultValue: 10 }\n];\n\nlet importedShape = library[shape].geometry[0].boundingBox.bounds[1][1]\nconsole.log(importedShape)\nlet shapesArray = [];\nlet number = 3\n\nfor (let i = 0; i < number; i++) {\n    let movedShape = await Move(shape, spacing * i, 0,0);\n    shapesArray.push(movedShape);\n}\n\nlet assembledShape = await Assembly(shapesArray)\n\nreturn assembledShape;\n\n\n\n\n\n\n"
     },
     {
       "atomType": "Circle",
@@ -74,14 +74,14 @@
     },
     {
       "atomType": "Rectangle",
-      "x": 0.2027027027027027,
-      "y": 0.7319277108433735,
+      "x": 0.19901960784313727,
+      "y": 0.7560240963855422,
       "uniqueID": "id-51",
       "ioValues": [
         {
           "name": "x length",
-          "ioValue": 10,
-          "currentEquation": "10"
+          "ioValue": 5,
+          "currentEquation": "5"
         },
         {
           "name": "y length",
